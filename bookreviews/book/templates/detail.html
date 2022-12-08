@@ -1,0 +1,34 @@
+{% extends 'base.html' %} 
+{% block title %}Detail{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center mt-4">
+  <div class="col-lg-4 col-md-5 col-11 d-flex align-items-center">
+    <img alt="" width="100px" class="card-img-top " src="{{ book.image.url }}" />
+  </div>
+  <div class="col-lg-7 col-md-6 col-11 ms-lg-4 ms-md-3 ms-0">
+    <div class="mt-4">
+      <h1 class=" fw-bold "> {{ book.title }} </h1>
+      <h4 class="opacity-75">{{ book.author }}</h4>
+      
+
+    </div>
+    <div class="mt-4">
+        <p class="fs-5 mb-0">ISBN : {{ book.isbn }}</p>
+        <p class="fs-5 mb-0">Author : {{ book.author }}</p>
+        <p class="fs-5 mb-0">Release Date : {{ book.release_date|date:"d-m-Y" }} </p>
+        <p class="fs-5 mb-0">Page : {{ book.page_count }}</p>
+        <p class="fs-5 mb-0">Publisher : {{ book.publisher }}</p>
+        <p class="fs-5 mb-0">Category : {{ book.category }}</p>
+        <div class="mt-2">
+        <p class="fs-5 mb-0">Description :</p>
+            <p> {{ book.description }}</p>
+        </div>
+        <h5>Price : <i class="bi bi-currency-yen h6"></i>{{ book.price }}</h5>
+        <div class="text-lg-end text-md-end text-center mt-4">
+             <a class="fs-5 text-decoration-none" href="#" onclick="history.back()"><i class="bi bi-caret-left"></i> Back</a>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

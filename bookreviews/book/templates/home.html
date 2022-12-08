@@ -1,0 +1,70 @@
+{% extends "base.html" %} 
+{% block title %}Home{% endblock title %}
+{% block content %}
+<br />
+<div class="row">
+    <h1 class="text-center my-4">Cari Buku Favorit mu Di BookReview</h1>
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <p class="mb-2">kategori:</p>
+        <a class="btn btn-primary" href="{% url 'home' %}">Semua</a>
+        {% for category in categories %}
+        <a class="btn btn-primary" href="?category_id={{ category.id }}"
+          >{{ category.name }}</a
+        >
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="my-3">
+                <form action="">
+                    <div class="mb-3">
+          <label class="form-label">Cari Buku <i class="bi bi-search"></i> :</label>
+          <input type="text" autocomplete="off" placeholder="Cari Nama Buku anda"  name="judul" class="form-control" />
+        </div>
+        <div class="text-center">
+            <button onclick="preventDefault()" type="submit" class="btn btn-primary ">Search <i class="bi bi-search "></i> </button>
+        </div>
+      </form>
+    </div>
+</div>
+</div>
+    <div class="">
+      <p class="mb-0">
+        {% if searchJudul %}Pencarian untuk
+        <strong>{{ searchJudul }} :</strong>{% endif %}
+      </p>
+    </div>
+    <br />
+
+    <div class="row justify-content-center g-4">
+      {% for book in books %}
+      <div class="col-lg-3 col-md-5 col-10 d-flex align-items-stretch">
+        <div class="card">
+          <img alt="" class="card-img" src="{{ book.image.url }}" />
+          <div class="card-body">
+            <h5 class="card-title fw-bold">
+                {{ book.title }} 
+            </h5>
+            <h6 >{{ book.author }}</h6>
+            <p class="card-text">
+              {{ book.description }}
+              <br />
+              <br />
+              <!-- {{ book.isbn }} | {{ book.page_count }} | {{ book.category.name }} -->
+              {{ book.release_date|date:"d-m-Y" }}
+            </p>
+            <div class="text-end">
+                <a class="btn btn-primary w-50" href="{% url 'detail' book.id %}">Detail</a>
+                <a class="btn btn-primary bi-h" href="{% url 'detail' book.id %}"><i class="bi bi-heart"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock content %}
